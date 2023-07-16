@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebForumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="experience">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="profiles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="location_id" Type="int" Nullable="false" />
+          <Property Name="professional_id" Type="int" Nullable="false" />
+          <Property Name="experience_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date_of_birth" Type="date" Nullable="false" />
+          <Property Name="gender" Type="bit" Nullable="false" />
+          <Property Name="phone" Type="int" />
+          <Property Name="qualification" Type="varchar" MaxLength="50" />
+          <Property Name="aichievement" Type="varchar" MaxLength="255" />
+          <Property Name="img" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="replies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post_id" Type="int" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="specialization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="is_public" Type="bit" Nullable="false" />
+          <Property Name="is_admin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_posts_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="posts" Type="Self.posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_experience">
+          <End Role="experience" Type="Self.experience" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experience">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="experience_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_location">
+          <End Role="locations" Type="Self.locations" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_specialization">
+          <End Role="specialization" Type="Self.specialization" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="professional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_replies_posts">
+          <End Role="posts" Type="Self.posts" Multiplicity="1" />
+          <End Role="replies" Type="Self.replies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="replies">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_replies_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="replies" Type="Self.replies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="replies">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebForumModelStoreContainer">
+          <EntitySet Name="experience" EntityType="Self.experience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profiles" EntityType="Self.profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="replies" EntityType="Self.replies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="specialization" EntityType="Self.specialization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_posts_users" Association="Self.FK_posts_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_experience" Association="Self.FK_profiles_experience">
+            <End Role="experience" EntitySet="experience" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_location" Association="Self.FK_profiles_location">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_specialization" Association="Self.FK_profiles_specialization">
+            <End Role="specialization" EntitySet="specialization" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_users" Association="Self.FK_profiles_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_replies_posts" Association="Self.FK_replies_posts">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="replies" EntitySet="replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_replies_users" Association="Self.FK_replies_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="replies" EntitySet="replies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="experience">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="profiles" Relationship="Self.FK_profiles_experience" FromRole="experience" ToRole="profiles" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="profiles" Relationship="Self.FK_profiles_location" FromRole="locations" ToRole="profiles" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="user" Relationship="Self.FK_posts_users" FromRole="posts" ToRole="users" />
+          <NavigationProperty Name="replies" Relationship="Self.FK_replies_posts" FromRole="posts" ToRole="replies" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="location_id" Type="Int32" Nullable="false" />
+          <Property Name="professional_id" Type="Int32" Nullable="false" />
+          <Property Name="experience_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="gender" Type="Boolean" Nullable="false" />
+          <Property Name="phone" Type="Int32" />
+          <Property Name="qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aichievement" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="experience" Relationship="Self.FK_profiles_experience" FromRole="profiles" ToRole="experience" />
+          <NavigationProperty Name="location" Relationship="Self.FK_profiles_location" FromRole="profiles" ToRole="locations" />
+          <NavigationProperty Name="specialization" Relationship="Self.FK_profiles_specialization" FromRole="profiles" ToRole="specialization" />
+          <NavigationProperty Name="user" Relationship="Self.FK_profiles_users" FromRole="profiles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="reply">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_id" Type="Int32" Nullable="false" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="post" Relationship="Self.FK_replies_posts" FromRole="replies" ToRole="posts" />
+          <NavigationProperty Name="user" Relationship="Self.FK_replies_users" FromRole="replies" ToRole="users" />
+        </EntityType>
+        <EntityType Name="specialization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="profiles" Relationship="Self.FK_profiles_specialization" FromRole="specialization" ToRole="profiles" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_public" Type="Boolean" Nullable="false" />
+          <Property Name="is_admin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="posts" Relationship="Self.FK_posts_users" FromRole="users" ToRole="posts" />
+          <NavigationProperty Name="profiles" Relationship="Self.FK_profiles_users" FromRole="users" ToRole="profiles" />
+          <NavigationProperty Name="replies" Relationship="Self.FK_replies_users" FromRole="users" ToRole="replies" />
+        </EntityType>
+        <Association Name="FK_profiles_experience">
+          <End Role="experience" Type="Self.experience" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experience">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="experience_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_location">
+          <End Role="locations" Type="Self.location" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_posts_users">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="posts" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_replies_posts">
+          <End Role="posts" Type="Self.post" Multiplicity="1" />
+          <End Role="replies" Type="Self.reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="replies">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_specialization">
+          <End Role="specialization" Type="Self.specialization" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="professional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_profiles_users">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_replies_users">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="replies" Type="Self.reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="replies">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebForumEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="experiences" EntityType="Self.experience" />
+          <EntitySet Name="locations" EntityType="Self.location" />
+          <EntitySet Name="posts" EntityType="Self.post" />
+          <EntitySet Name="profiles" EntityType="Self.profile" />
+          <EntitySet Name="replies" EntityType="Self.reply" />
+          <EntitySet Name="specializations" EntityType="Self.specialization" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_profiles_experience" Association="Self.FK_profiles_experience">
+            <End Role="experience" EntitySet="experiences" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_location" Association="Self.FK_profiles_location">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_posts_users" Association="Self.FK_posts_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_replies_posts" Association="Self.FK_replies_posts">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="replies" EntitySet="replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_specialization" Association="Self.FK_profiles_specialization">
+            <End Role="specialization" EntitySet="specializations" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_profiles_users" Association="Self.FK_profiles_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_replies_users" Association="Self.FK_replies_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="replies" EntitySet="replies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebForumModelStoreContainer" CdmEntityContainer="WebForumEntities">
+          <EntitySetMapping Name="experiences">
+            <EntityTypeMapping TypeName="WebForumModel.experience">
+              <MappingFragment StoreEntitySet="experience">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="WebForumModel.location">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="WebForumModel.post">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profiles">
+            <EntityTypeMapping TypeName="WebForumModel.profile">
+              <MappingFragment StoreEntitySet="profiles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="professional_id" ColumnName="professional_id" />
+                <ScalarProperty Name="experience_id" ColumnName="experience_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="aichievement" ColumnName="aichievement" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="replies">
+            <EntityTypeMapping TypeName="WebForumModel.reply">
+              <MappingFragment StoreEntitySet="replies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specializations">
+            <EntityTypeMapping TypeName="WebForumModel.specialization">
+              <MappingFragment StoreEntitySet="specialization">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="WebForumModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="is_public" ColumnName="is_public" />
+                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

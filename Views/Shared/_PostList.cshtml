@@ -1,0 +1,72 @@
+﻿@model List<DoctorWebForum.Models.postViewModel>
+
+<div id="post-list">
+    @foreach (var post in Model)
+    {
+        var timeSpan = DateTime.Now - post.created_at;
+        var totalMinutes = (int)timeSpan.TotalMinutes;
+        <div class="card row-hover pos-relative py-3 px-3 mb-3 rounded-0" style="border-color: rgb(214, 219, 217);">
+            <div class="row align-items-center">
+                <div class="col-6 d-flex flex-column justify-content-center align-items-start">
+                    <h5 class="m-0 py-1">
+                        <a href="#" class="text-primary font-weight-bold">@post.title</a>
+                    </h5>
+                    <span class="text-sm py-1">@post.description</span>
+                    <span class="text-sm py-1">@post.content</span>
+
+                </div>
+                <div class="col-5 d-flex flex-column justify-content-center align-items-start">
+                    <div class="m-0 text-sm"><a class="font-weight-bold" href="#">@post.name</a></div>
+                    <div class="m-0 text-sm">
+                        @if (totalMinutes < 60)
+                        {
+                            <span class="m-0">Posted @totalMinutes minutes ago</span>
+                        }
+                        else if (totalMinutes < 1440)
+                        {
+                            var totalHours = Math.Round(timeSpan.TotalHours);
+                            <span class="m-0">Posted @totalHours hours ago</span>
+                        }
+                        else
+                        {
+                            var totalDays = Math.Round(timeSpan.TotalDays);
+                            if (totalDays < 365)
+                            {
+                                <span class="m-0">Posted @totalDays days ago</span>
+                            }
+                            else
+                            {
+                                var totalYears = Math.Floor(totalDays / 365.0);
+                                <span class="m-0">Posted @totalYears.ToString() years ago</span>
+                            }
+                        }
+                        <div class="m-0 text-sm">@post.professional_name</div>
+                        <div class="m-0 text-sm">@post.location_name</div>
+                        <div class="m-0 text-sm">@post.experience_name</div>
+                    </div>
+                </div>
+                <div class="col-1 op-7">
+                    <div class="row text-center op-7">
+                        <div class="col px-1"> <div class="ion-ios-chatboxes-outline icon-1x" style="font-size: 30px;"></div> <span class="d-block text-sm">@post.reply_count</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- /End of post -->
+</div>
+<div class="col-12 my-2">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            @if (Model != null && Model.Any())
+            {
+                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class="page-link" href="#" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#post-list" data-ajax-url="@Url.Action("Index", new { page = i })">@i</a>
+                    </li>
+                }
+            }
+        </ul>
+    </nav>
+</div>

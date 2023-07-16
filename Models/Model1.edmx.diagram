@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="092a5e958e884970a7d5ff267d050544" Name="Diagram1">
+        <EntityTypeShape EntityType="WebForumModel.experience" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.location" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.post" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.profile" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.reply" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.specialization" Width="1.5" PointX="3.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebForumModel.user" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="WebForumModel.FK_profiles_experience" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_profiles_location" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_posts_users" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_replies_posts" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_profiles_specialization" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_profiles_users" ManuallyRouted="false" />
+        <AssociationConnector Association="WebForumModel.FK_replies_users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

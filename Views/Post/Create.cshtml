@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+<div class="page-banner overlay-dark bg-image" style="background-image: url(/Content/assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+        <div class="container text-center wow fadeInUp">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Post","Home")">Post</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+            </nav>
+            <h1 class="font-weight-normal">Create post</h1>
+        </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+
+<div class="container wow zoomIn" data-wow-delay="400ms">
+    <div class="row my-4">
+        <div class="col-12 col-md-9 border-black border-2 border mb-3">
+            <div style="background-color: #00d9a5;" class="row px-3 text-left text-white font-weight-bold">Create new post</div>
+            <form action="" method="POST">
+
+                <div class="form-group">
+                    <input type="hidden" />
+                </div>
+
+                <div class="form-group">
+                    <label for="title" class="row px-3">Title</label>
+                    <input type="text" class="form-control" name="title" />
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="row px-3">Description</label>
+                    <input type="text" class="form-control" name="description" />
+                </div>
+
+                <div class="form-group">
+                    <label for="content" class="row px-3">Content</label>
+                    <textarea rows="5" class="form-control col-12 " name="content"></textarea>
+                </div>
+
+                <div class="form-group d-flex justify-content-between">
+                    <button class="btn btn-primary" type="reset">
+                        Reset
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Post
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-3 mb-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="px-xl-3">
+                        <a href="@Url.Action("Index","Post")" class="btn btn-block btn-primary">Back</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title font-weight-bold">Support</h6>
+                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                    <button type="button" class="btn btn-primary">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

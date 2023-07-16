@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url(/Content/assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+        <div class="container text-center wow fadeInUp">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Post","Home")">Post</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+            <h1 class="font-weight-normal">Discussion</h1>
+        </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+
+<div class="container mt-3 wow zoomIn" data-wow-delay="400ms">
+    <div class="row">
+        <div class="col-2 mt-2 p-0">
+            <div style="background-color: #00d9a5;" class="col-12 text-left text-white mb-3">Author</div>
+            <div class="d-flex flex-column mb-3">
+                <img width="70px" height="70px" class="m-3" />
+                <span class="col-12">Username</span>
+                <span class="col-12">Posted:</span>
+                <span class="col-12">Point:</span>
+            </div>
+        </div>
+        <div class="col-10 mt-2 p-0">
+            <div style="background-color: #00d9a5;" class="col-12 text-left text-white mb-3">Topic</div>
+            <div class="d-flex flex-column align-items-start justify-content-center col-12">
+                <h3 class="mt-2">Title</h3>
+                <span>Content</span>
+                <span>Created at</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-2 mt-2 p-0">
+            <div class="d-flex flex-column mb-3">
+                <img width="70px" height="70px" class="m-3" />
+                <span class="col-12">Username</span>
+                <span class="col-12">Posted:</span>
+                <span class="col-12">Point:</span>
+            </div>
+        </div>
+        <div class="col-10 mt-2 p-0">
+            <div class="d-flex flex-column align-items-start justify-content-center col-12">
+                <h3 class="mt-2">To title</h3>
+                <span>Content</span>
+                <span>Created at</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="comment-form-wrap mt-3 col-12">
+            <h3 class="mb-3">Leave a comment</h3>
+            <form action="#" class="">
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="msg" id="message" cols="30" rows="4" class="form-control"></textarea>
+                </div>
+                <div class="form-group d-flex justify-content-end align-item-center">
+                    <input type="submit" value="Post Comment" class="btn btn-primary">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

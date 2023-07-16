@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url(/Content/assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+        <div class="container text-center wow fadeInUp">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","User")">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+            </nav>
+            <h1 class="font-weight-normal">Edit</h1>
+        </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+
+<div class="container">
+    <div class="row flex-lg-nowrap wow zoomIn">
+        <div class="col">
+            <div class="row my-4">
+                <div class="col mb-3">
+                    <div class="card">
+                        <div style="background-color: #00d9a5;" class="col-12 px-4 text-left text-white font-weight-bold">Edit</div>
+                        <div class="card-body">
+                            <div class="e-profile">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto mb-3">
+                                        <div class="mx-auto" style="width: 140px;">
+                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">Full name</h4>
+                                            <p class="mb-0 text-muted">Gender</p>
+                                            <div class="text-muted"><small>Date of birth</small></div>
+                                            <div class="mt-2">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fa fa-fw fa-camera"></i>
+                                                    <span>Change Photo</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="text-center text-sm-right">
+                                            <span class="badge badge-secondary">User</span>
+                                            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a href="#!" class="active nav-link">Profile</a></li>
+                                </ul>
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane active">
+                                        <form class="form" novalidate="">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Full Name</label>
+                                                                <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Date of birth</label>
+                                                                <input class="form-control" type="text" name="username" placeholder="xx-xx-xxxx" value="xx-xx-xxxx">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group d-flex flex-column">
+                                                                <label class="text-sm">Gender</label>
+                                                                <select class="form-select bg-white text-sm text-center" style="border-color: rgb(214, 219, 217); outline: none;" aria-label="Default select example">
+                                                                    <option value="0">Topic</option>
+                                                                    <option value="1">Location</option>
+                                                                    <option value="2">Professional</option>
+                                                                    <option value="3">Experience</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group d-flex flex-column">
+                                                                <label class="text-sm">Location</label>
+                                                                <select class="form-select bg-white text-sm text-center" style="border-color: rgb(214, 219, 217); outline: none;" aria-label="Default select example">
+                                                                    <option value="0">Topic</option>
+                                                                    <option value="1">Location</option>
+                                                                    <option value="2">Professional</option>
+                                                                    <option value="3">Experience</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group d-flex flex-column">
+                                                                <label class="text-sm">Experience</label>
+                                                                <select class="form-select bg-white text-sm text-center" style="border-color: rgb(214, 219, 217); outline: none;" aria-label="Default select example">
+                                                                    <option value="0">Topic</option>
+                                                                    <option value="1">Location</option>
+                                                                    <option value="2">Professional</option>
+                                                                    <option value="3">Experience</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group d-flex flex-column">
+                                                                <label class="text-sm">Professional</label>
+                                                                <select class="form-select bg-white text-sm text-center" style="border-color: rgb(214, 219, 217); outline: none;" aria-label="Default select example">
+                                                                    <option value="0">Topic</option>
+                                                                    <option value="1">Location</option>
+                                                                    <option value="2">Professional</option>
+                                                                    <option value="3">Experience</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Phone</label>
+                                                                <input class="form-control" type="text" placeholder="0123456789">
+                                                            </div>
+                                                        </div>
+                                                        <div class="Qualification">
+                                                            <div class="form-group">
+                                                                <label>Phone</label>
+                                                                <input class="form-control" type="text" placeholder="0123456789">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col mb-3">
+                                                            <div class="form-group">
+                                                                <label>Aichievement</label>
+                                                                <textarea class="form-control" rows="5" placeholder="My aichievement"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3 mb-3">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="px-xl-3">
+                                <a href="@Url.Action("Index","Login")" class="btn btn-block btn-primary">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Support</h6>
+                            <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                            <button type="button" class="btn btn-primary">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

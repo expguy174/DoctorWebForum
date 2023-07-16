@@ -1,0 +1,120 @@
+﻿@model List<DoctorWebForum.Models.postViewModel>
+@{
+    ViewBag.Title = "Post";
+    var topPosts = ViewBag.TopPosts as List<DoctorWebForum.Models.postViewModel>;
+}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url(/Content/assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+        <div class="container text-center wow fadeInUp">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Post</li>
+                </ol>
+            </nav>
+            <h1 class="font-weight-normal">All posts</h1>
+        </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+
+<div class="container mt-3">
+    <div class="row">
+        <!-- Main content -->
+        <div class="col-lg-9 wow fadeInLeft" data-wow-delay="400ms">
+            <div class="row mb-3 d-flex justify-content-center align-items-center">
+                <form action="#" method="post" id="search-form">
+                    <div class="mt-3 d-flex">
+                        <input id="searchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search by.." aria-label="Username" aria-describedby="icon-addon1" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px; z-index: 99;">
+                        <select id="searchType" name="searchType" class="form-select bg-white text-sm text-center" style="border-color: rgb(214, 219, 217); outline: none; border-left: 0px;" aria-label="Default select example">
+                            <option value="0">Topic</option>
+                            <option value="1">Location</option>
+                            <option value="2">Professional</option>
+                            <option value="3">Experience</option>
+                        </select>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary rounded-0 mai-search" type="submit"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- End of post -->
+
+            <div id="post-list">
+                @Html.Partial("_PostList", Model)
+            </div>
+        </div>
+        <!-- /Main content -->
+        <!-- Sidebar content -->
+        <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0 wow fadeInRight" data-wow-delay="400ms">
+            <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;">
+                <div class="sticky-inner">
+                    <a class="btn btn-lg btn-block btn-primary rounded-0 py-4 mb-3 bg-op-6 roboto-bold" href="@Url.Action("Create", "Post")" style="">Ask Question</a>
+                    <div class="bg-white text-sm">
+                        <div class="row d-flex flex-row op-7">
+                            <div class="col-6 flex-ew text-center py-3 mx-0 border-right">
+                                <div class="d-block lead font-weight-bold text-primary">
+                                    @if (@ViewBag.TotalPosts != null)
+                                    {@ViewBag.TotalPosts}
+                            </div> Posts
+                        </div>
+                        <div class="col-6 flex-ew text-center py-3 mx-0">
+                            <div class="d-block lead font-weight-bold text-primary">
+                                @if (@ViewBag.TotalReplies != null)
+                                {@ViewBag.TotalReplies}
+                        </div> Replies
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white mb-3">
+                <h4 class="px-3 pt-4 pb-2 op-5 m-0">
+                    Active Topics
+                </h4>
+                @if (topPosts != null && topPosts.Count() > 0)
+                {
+                    foreach (var post in topPosts)
+                    {
+                        var timeSpan = DateTime.Now - post.created_at;
+                        var totalMinutes = (int)timeSpan.TotalMinutes;
+                        <hr class="m-0">
+                        <div class="pos-relative px-3 py-3">
+                            <h6 class="text-primary text-sm">
+                                <a href="#" class="text-primary">@post.title </a>
+                            </h6>
+                            <p class="mb-0 text-sm">
+                                @if (totalMinutes < 60)
+                                {
+                                    <span>Posted @totalMinutes minutes ago</span>
+                                }
+                                else if (totalMinutes < 1440)
+                                {
+                                    var totalHours = Math.Round(timeSpan.TotalHours);
+                                    <span>Posted @totalHours hours ago</span>
+                                }
+                                else
+                                {
+                                    var totalDays = Math.Round(timeSpan.TotalDays);
+                                    if (totalDays < 365)
+                                    {
+                                        <span>Posted @totalDays days ago</span>
+                                }
+                                    else
+                                    {
+                                        var totalYears = Math.Floor(totalDays / 365.0);
+                                        <span>Posted @totalYears.ToString() years ago</span>
+                                    }
+                                }
+                                <span class="op-6">by</span>
+                                <a class="text-black" href="#">@post.name</a>
+                                </p>
+                            </div>
+                        }
+                    }
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Sidebar content -->
+</div>
+</div>
